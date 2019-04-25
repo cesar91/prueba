@@ -1,0 +1,30 @@
+---------------Docker
+Docker
+Contenedores que se pueden ejecutar dentro de nuestro centro de datos o en la nube.>
+
+Imagen: es una plantilla
+Contenedor: es una imagen que esta modificada por nosotros.
+(no es lo mismo borrar un contenedor que borrar una imagen)
+
+"docker pull" para descargar una Imagen
+"docker images" ver imagenes que tenemos descargadas
+"docker ps -a" ver contenedores que tenemos y que se estan ejecutando
+"docker run" Primera vez que vamos a crear un contenedor desde nuestra imagen previamente descargada
+"docker start" Arrancar un contenedor que ya esta creado es decir que tiene nuestros parámetros.
+"docker stop" detener el contenedor
+Si se actualiza la imagen, no se actualiza el contenedor
+
+"docker run -it --name container_prueba centos7"
+ crea un contenedor iterativo y le da de nombre container_prueba tomando la imagen centos7
+
+ "docker rmi" para borrar imag:enes (Se agrega el nombre de la imagen o el ID)
+ "docker rm" para borrar contenedores (solo se agrega el nombre del contenedor o el ID)
+" docker run -it --name prueba -p 8080:8080 nombredelaimagen  " crea contenedor iterativo con respondas por el puerto 8080
+
+Mapeo de volumenes es con la letra -v y se coloca la carpeta en donde estara el volumen.
+
+"docker attach" para conectarme a un contenedor iterativo que no se a detenido.
+control + q para salir del contenedor sin detenerlo
+
+"docker run -it --name prueba --link mibasededatos:mariadb centos:centos7 /bin/bash" para linkear contenedores.
+"docker logs -f nombre_contenedor" muestra los logs del contenedor 

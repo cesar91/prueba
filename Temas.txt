@@ -1,0 +1,296 @@
+****** SIEMPRE VOLVERSE USUARIO ROOT
+	/$ sudo su
+		[sudo] contraseña para usuario: [******]
+	/#
+
+-------------------------------------------------------------------------------------------
+****** ADMNISTRACION DE USUARIOS
+
+	*Crear usuario
+		/# adduser [usuarionuevo]
+
+	*Asignar contraseña
+		/# passwd [usuario]
+		Ingresa Nueva Contraseñra: [*****]
+
+	*Eliminar usiario
+		/# userdel [usuario]
+
+	*Crear usuario en FTP*
+		/# useradd -g ftp -d /ruta/carpetaFTP -c "Nombre de usuario" [usuario]
+			-g ftp: añade usuario al grupo FTP
+			-d /ruta/carpetaFTP: ruta donde apuntará
+			-c "Nombre de Usuario": Descripcion del usuario
+
+	*Ver usuarios creados
+		/# cat /etc/passwd
+
+	*VerPrivilegios usuarios*
+ 		/# nano etc/sudoers.d
+
+-------------------------------------------------------------------------------------------	
+****** Saber donde se encuentra cada comando
+		/# whereis [comando]
+			ej. /$ whereis clear
+			clear: /usr/bin/clear /usr/share/man/man1/clear.1.gz
+
+****** Permiso a archivos*
+		/# chmod [0-7][0-7][0-7] [ruta-archivo.ext]
+			0 = ningun permiso
+			1 = ejecutar
+			2 = modificar
+			3 = modificar y ejecutar
+			4 = leer
+			5 = leer y ejecutar
+			6 = leer y modificar
+			7 = leer, modificar y ejecutar
+
+-------------------------------------------------------------------------------------------
+****** ADMINISTRACION DE DIRECTORIOS Y FICHEROS
+
+	*Crear un directorio
+		/# mkdir /ruta/a/crear/directorio/[nombre-directorio]
+
+	*Crear un archivo vacio
+		/#touch nombre-archivo.ext
+
+	*Copiar un archivo
+		/# cp [nombre-archivo.ext] /ruta_de_destino/[nombre-copia.ext]
+
+	*Copiar un directorio
+		/# cp -r /ruta/directorio /ruta_de_destino/nombre_copia
+
+	*Saber donde estamos posicionados
+		/# pwd
+
+	*Remover archivo
+		/# rm archivo.ext
+
+	*Remover directorio incluyendo todos sus archivos y subdirectorios.
+		/# rm -rf /directorio
+
+	*Mover y/o renombrar archivo
+		/# mv archivo.ext /ruta_de_destino/nombre-archivo.ext
+
+	*Mover y/o renombrar fichero
+		/# mv directorio/ /ruta_de_destino/nombre-directorio
+
+
+-------------------------------------------------------------------------------------------
+****** COMANDO TAR
+
+	comprimir
+		/# tar -cvf [archivo].tar [ruta]
+
+	descomprimir
+		/# tar -xvf [ruta-archivo].tar -C [ruta-a-desempaquetar]
+
+	ver contenido
+		/# tar -tf [archivo].tar	
+
+-------------------------------------------------------------------------------------------
+****** EDITORES DE TEXTO
+	+nano
+	+geany
+	+vi
+
+-------------------------------------------------------------------------------------------
+****** COMANDO TOP
+	Muestra un resumen del estado de nuestro sistema y la lista de procesos que se están ejecutando.
+	/# top
+
+-------------------------------------------------------------------------------------------
+****** MOSTRAR TAMAÑO DIRECTORIO O ARCHIVO    
+	/# du -sh [ruta-archivo] ó [*]   --> Todos 
+
+-------------------------------------------------------------------------------------------
+****** Mostrar texto plano en terminal
+	*Muestra todo el contenido del archivo
+		/# CAT [ruta-archivo.ext]
+	*Muestra el contenido del archivo por partes (%)
+		/# MORE [ruta-archivo.ext]
+
+-------------------------------------------------------------------------------------------
+******* Ocultar archivos*
+	/# mv [archivo].ext .[archivo].ext
+
+-------------------------------------------------------------------------------------------
+******* Leer log
+	/# more /var/log/syslog 	// se guardan mensajes de seguridad
+	/# more /var/log/auth.log 	// se registran todos los login del sistema
+	/# more /var/log/sulog 		// registro de ejecuciones de su
+	/# more /var/log/boot.log 	// registro de inicio del sistemas
+	/# more /var/log/mysql 		// registro de la BD MySql
+
+-------------------------------------------------------------------------------------------
+****** Buscar archivos en OS
+	/# find [directorio-nombre]
+
+-------------------------------------------------------------------------------------------
+****** FileSystem de los sistemas
+****** comando Chown
+****** Ligas suaves*
+****** Arreglos RAID*
+	
+-------------------------------------------------------------------------------------------
++ Bash*
++ Reglas htaccess
++ Reglas apache
++ Nginx(enginex)
++ Instalar un certificado SSL
++ Versiones TLS
++ cluster
++ Gluster
+
+-------------------------------------------------------------------------------------------
+
+*************************************  MYSQL  *********************************************
+
+****** Asignar todos los privilegios a root en MysQL
+
+    		>GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'MN4dm1n' WITH GRANT OPTION;
+ 
+****** Para crear un usuario con privilegios de Administrador
+
+   		# useradd -u 0 -o -g 0 asist
+
+***** Bloquear usuario "root"
+
+   		# passwd -l root
+
+****** Activar usuario "root"
+
+   		# passwd root
+ 	
+
+****** Crear un usuario con todos los privilegios en MySQL
+
+    		> CREATE USER foo IDENTIFIED BY 'mypassword';
+
+    		> GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost' IDENTIFIED BY 'mipassword' WITH GRANT OPTION;
+
+***** Generar usuario con permisos de select, insert y update,
+
+		> GRANT select,insert,update,delete ON BD.* TO USER@'%' IDENTIFIED BY "PASSWORD";
+		> GRANT select,insert,update,delete ON FCEBUMPR1.* TO BUMPR1@'%' IDENTIFIED BY 'PASSWORD';
+		> GRANT select ON *.* TO productosmn@'%' IDENTIFIED BY '54wp8w7v';
+
+***** Cambiar pwd de root en MySQL
+		> UPDATE user SET password=PASSWORD('DBmnr00t.15%') WHERE user='root';
+
+
+***** Cambiar variables "max_connections"
+    		> set global max_connections = 1000;
+			> SET GLOBAL max_connect_errors=10000;
+			# mysqladmin flush-hosts   ---> Para limpiar los errores de conexión.
+
+****** RESPALDO BASE DE DATOS MYSQL
+
+	*BD CON RUTINAS
+		mysqldump -h [direccionservidor] -u root -p --routines [nombreBD] > [archivoderespaldo].sql
+
+	*BD CON INFORMACION
+		mysqldump -u [usuario] -p [BD] --routines > [archivoderespaldo].sql
+
+	*TABLA CON DATOS
+		mysqldump -u [usuario] -p [DB] [nombre tabla] > [archivoderespaldo].sql
+
+	*BD PARCIAL(SIN DATOS)
+		mysql -u [usuario] -p [BD] --no-data > [archivoderespaldo].sql
+
+	*TODAS LAS BD
+
+		mysql -u [usuario] -p [BD] --all-databases > [archivoderespaldo.sql]
+
+
+	//////https://sucuri.net/es/guias/como-instalar-certificado-ssl
+
+-------------------------------------------------------------------------------------------
+****** PROGRAMACION BASH
+	Lugar de donde guardar archivos bash:
+		/usr/local/bin/
+
+	Permisos de ejecucion
+		chmod +x [ruta/archivo]
+
+		#! bin/bash encabezado
+
+-------------------------------------------------------------------------------------------
+****** COMANDO "rsync" PARA SINCRONIZAR Y ACTUALIZAR ARCHIVOS
+	sintaxis básica: 
+
+	/# rsync [-opciones] [ruta/directorio]
+
+		-v: modo verboso.
+		-r: copia datos en forma recursiva pero no mantiene permisos ni propietarios.
+		-a: modo de archivo. Copia datos en forma recursiva y mantiene propietarios y permisos.
+		-z: comprime los datos al copiar.
+		-h: muestra números amigables para el usuario.
+
+	1) Copiar archivo a un directorio local:
+
+		rsync -zvh [/ruta/directorio/archivo.ext] [ruta/directorio/destino]
+
+	2) Copiar un directorio local a otro:
+
+		rsync -avzh [/directorio/carpeta/*] [ruta/directorio/destino]
+
+		-Copia todos los archivos que hay dentro de la carpeta
+
+	3) Copia de un archivo a un directorio de un servidor remoto:
+
+		rsync -zvh [/ruta/directorio/archivo.ext] [root@000.000.0.000:/ruta/directorio/]
+
+	4) Copia de un directorio a un servidor remoto:
+
+		rsync -avz [/directorio/carpeta/*] [root@000.000.0.000:/ruta/directorio/]
+
+-------------------------------------------------------------------------------------
+****** COMANDO "SCP" PARA COPIAR ARCHIVOS DE UN SERVIDOR A OTRO
+
+	+COPIAR ARCHIVOS DE LOCAL A SERVIDOR
+		Si queremos subir el archivo archivo.txt de nuestro ordenador a la carpeta /home/usuario del servidor, hacemos lo siguiente:
+			/# scp [archivo.txt] [usuario@0.0.0.0]:[/ruta/directorio]
+
+	+COPIAR ARCHIVOS DE SERVIDOR A LOCAL
+		Si queremos copiar el fichero archivo.txt del servidor a nuestro ordenador en la carpeta Documentos, hacemos lo siguiente:
+			/$ scp [usuario@0.0.0.0]:[/ruta/direcotrio/archivo.txt] [/direcorio/Documentos]
+
+	+COPIAR ARCHIVOS DE SERVIDOR A SERVIDOR
+		Para copiar un archivo de un servidor a otro, hacemos lo siguiente:
+			/# scp [usuario@0.0.0.0]:[/ruta/direcotrio/archivo.txt] [usuario2@dominio2.com]:[/ruta/directorio/]
+
+	+COPIAR UN DIRECTORIO COMPLETO
+		Para copiar un directorio completo de mi ordenador al servidor, por ejemplo /home/mario/carpeta a /home/usuario, añadimos un -r en el comando:
+			/# scp -r [/ruta/directorio/home/mario/carpeta] [usuario@0.0.0.0]:[/ruta/directorio/home/usuario]
+
+	+LIMITAR EL ANCHO DE BANDA
+		Para no sobrecargar demasiado el servidor, es posible limitar el ancho de banda de la transferencia. Con el parámetro -l podemos indicar la velocidad (en Kbps).
+			/# scp -l [limite] [usuario@0.0.0.0]:[/ruta/direcotrio/archivo.txt] [/direcorio/Documentos]
+
+-------------------------------------------------------------------------------------------
+
+****** COMANDO PARA MOSTRAR ULTIMAS LINEAS DE UN ARCHIVO
+
+		/# tail -[opcines] /ruta/archivo
+		
+
+	/# tail -f100 /ruta/archivo      ------------->
+
+			Opciones:
+
+			-n: Permite especificar el número de lineas que hay que mostrar
+
+			-q: Evita que se muestren los títulos de los archivos especificados.
+				
+			-f: Tras mostrar las últimas líneas, permite que el comando despliegue las líneas que se le vayan agregando al archivo.
+				
+			-c: Permite especificar el numero de caracteres a desplegar, en vez de lineas.
+
+			
+
+
+
+
+
+

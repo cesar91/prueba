@@ -1,0 +1,10 @@
+esa es la ip que se va a conectar a el server sql
+IP FacE RH 172.19.215.11  172.19.215.120
+
+
+Peer
+
+Kio 5&6		200.77.234.116:70
+
+Marzam
+Marzam PROD 172.35.65.164 

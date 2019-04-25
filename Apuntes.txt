@@ -1,0 +1,55 @@
+Apuntes.
+No se necesita VoBo en ambientes QA.
+
+172.21.48.12 PHP-56-QA
+passwd 5Dd1Akw3
+
+172.21.36.40
+passwd DBmnr00t.17%
+
+172.21.48.14
+passwd MN4dm1n
+
+RADWARE  web aplication firewall
+
+
+conexión por DHCP es que te da una ip depende del segmento que tenga asignado para ofrecer la conexión DHCP
+
+
+*****************************************
+
+Correo para virtualización   virtualizacion@masnegocio
+
+Revisión maquina 172.20.53.118
+Recibidos
+	x
+Nestor Abel Perez Castro
+
+09:10 (Hace 1 hora.)
+
+para Virtualización, Infraestructura
+Buenos días requerimos de su apoyo para validar el estatus de la maquina 172.20.53.118 en caso de estar apagada, encenderla, es urgente
+
+Néstor Perez
+Administrador de Sistemas
+
+
+*************************************
+FCEAPP01
+
+Boveda kio 192.168.20.42   https://www.kioboveda.com/portal
+
+Boveda marti  https://www.proveedormarti.com/portal
+
+
+*********************
+
+Maquina PIX 172.20.36.216
+
+*******************************
+successfactors
+https://performancemanager8.successfactors.com
+C0016336671P
+Kio#Mexico19
+
+*****************************

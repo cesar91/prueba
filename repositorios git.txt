@@ -1,0 +1,48 @@
+Repositorios git
+
+mn-facec-servicios-integracion-v10 : Servicios REST que exponen operaciones básicas de integración tanto para la carga de tickets como para la extracción de CFDIs generados en FacE Cliente.
+http://git.facemasnegocio.com/asist/mn-facec-servicios-integracion-v10.git
+Listo
+
+mn-facec-servicios-integracion-soap-v10 : Servicios SOAP que exponen operaciones básicas de integración tanto para la carga de tickets como para la extracción de CFDIs generados en FacE Cliente.
+http://git.facemasnegocio.com/asist/mn-facec-servicios-integracion-soap-v10.git
+Listo
+
+mn-facec-servicios-v10 : Servicios base del proyecto FacE Cliente, son consumidos por los weavers para operaciones concretas del producto.
+http://git.facemasnegocio.com/asist/mn-facec-servicios-v10.git
+Listo
+
+mn-facec-scheduler-semilla-v10 : Servicios basados en temporizador, para el proyecto FacE cliente es aquí en donde se ejecutan las operaciones automáticas para la generación de facturas globales.
+http://git.facemasnegocio.com/asist/mn-facec-scheduler-semilla-v10.git
+Listo
+
+mn-lp-facetimbre : Landingpage para  FacETimbre v20
+http://git.facemasnegocio.com/asist/mn-lp-facetimbre.git
+Listo
+
+mn-facetimbre-semilla-v20 : Servicios semilla para FacETimbre v20
+http://git.facemasnegocio.com/asist/mn-facetimbre-semilla-v20.git
+Listo
+
+mn-radt-plugin-eclipse : Plugin para que eclipse pueda deployar artefactos a mn-radt-engine
+  http://git.facemasnegocio.com/asist/mn-radt-plugin-eclipse.git
+Listo
+
+mn-e-xpenses-ws : Web services REST y SOAP para Integración con Expenses Enterprise
+http://git.facemasnegocio.com/asist/mn-e-xpenses-ws.git
+ya creado previamente
+
+worker-amex : Worker que procesa los archivos de estados de cuenta enviados por AMEX para Expenses Enterprise
+http://git.facemasnegocio.com/asist/worker-amex.git
+Listo
+
+mn-weaver-base : Base para cada mini weaver de un nuevo proyecto RADT
+http://git.facemasnegocio.com/asist/mn-weaver-base.git
+
+
+Members developers
+
+Roberto Concha
+Marco Saavedra
+Armando Castillo
+Cesar Hernández

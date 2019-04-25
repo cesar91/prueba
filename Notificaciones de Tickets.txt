@@ -1,0 +1,88 @@
+
+tecnico.mn@masnegocio.com
+
+---------------NOTIFICACION TICKET EN PROGRESO (PRIMEROS 45 MIN.)-----------------------------------
+Estimado
+
+Su ticket esta siendo atendido, en cuanto quede solucionado o necesitemos una retroalimentaci�n por parte suya, se lo notificaremos por este medio.
+
+Saludos.
+
+ISC. N�stor P�rez Castro
+
+---------------NOTIFICACION TICKET SOLUCIONADO (DEPENDE EL SLA CONTRATADO)--------------------------
+
+En relaci�n a su ticket, se le informa que este ya fue solucionado
+
+Despu�s de validar la informaci�n, quedamos en espera de su Vo.Bo. para cierre del mismo.
+
+Saludos.
+
+
+En relación con su ticket, se informa que ya fue solucionado satisfactoriamente.
+Favor de validar la información para proceder al cierre del mismo, quedo en espera de su Vo. Bo.
+Adjunto evidencias.
+Saludos.
+
+---------------NOTIFICACION TICKET PENDIENTE POR USUARIO--------------------------------------------
+Su ticket esta siendo atendido, para solucionarlo necesitamos que por favor nos apoye con la siguiente informaci�n:
+
+
+Agradeceremos nos env�e a la brevedad esta informaci�n para continuar atendi�ndolo.
+
+Saludos
+--------------------CAMBIO DE PROPIETARIO ----------------------------------------------------------
+Estimada Anel,
+
+Por favor, podr�as apoyarme con la Soluci�n a este Ticket.
+
+Agradezco tu apoyo, quedo a tus �rdenes para cualquier informaci�n adicional ....
+
+Saludos
+---------------NOTIFICACION ESTATUS DE TICKET CON ATENCION LARGA(MINIMO CADA 36 HRS.)---------------
+Su ticket esta siendo atendido, el Estatus actual del mismo es el siguiente:
+
+
+En cuanto quede resuelto o necesitemos una retroalimentac�on por parte tuya, se lo notificaremos por este medio.
+
+Para cualquier duda o comentario estamos a sus ordenes en los siguientes n�meros telef�nicos y correo electr�nico.
+
+Tel�fonos: 5096-7039 y 5096-7047.
+
+Correo Electr�nico: soporte@masnegocio.com
+
+Saludos
+Gracias por su solicitud.
+---------------LEVANTAMIENTO DE TICKET HIJO (VINCULADO)---------------------------------------------
+Estimado (a) (NOMBRE),
+
+
+
+De acuerdo al Ticket relacionado (TICKET PADRE) ser�as tan amable de ...
+
+
+
+Agradezco tu apoyo, quedo a tus �rdenes para cualquier informaci�n adicional....
+
+
+
+Consultor.
+
+---------------NOTIFICACION DE VALIDACION DE TICKET INTERNO (OBLIGATORIO)----------------------------
+Estimado (a) (NOMBRE),
+
+
+
+He validado la soluci�n a este Ticket, puedes proceder al cierre del mismo.
+
+
+
+Muchas gracias por tu apoyo.
+
+
+Saludos.
+
+
+
+
+1224 solo en procesados

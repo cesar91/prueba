@@ -1,0 +1,17 @@
+Curso de Git.
+
+# git log
+Muestra los commits que realizamos.
+Para salir del log es con CTRL + Z
+
+Hash es el ID de cada commit
+
+# git checkout ID Hash
+Para ver lo que contiene ese commit
+
+# git checkout -b nombredelcambio
+para actualizar los cambios que se realizaron en los archivos
+
+# git add .
+
+# git commit -m "nombre" 

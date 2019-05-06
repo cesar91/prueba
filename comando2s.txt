@@ -1450,3 +1450,15 @@ se agrega configuracion en el archivo conf (en este caso faces.conf )
 buscas o asignas la ip publica en pfsense
 
 ******************************
+
+root@172.20.53.115
+MN4dm1n
+*************************
+
+dmz.facemasnegocio.com
+
+DMZ-LA
+
+199.231.161.8
+********************************
+sudos 

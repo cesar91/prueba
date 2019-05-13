@@ -1444,9 +1444,44 @@ Usuario : 41866111
 Password : K993#r$2p
 
 **************************************
+Nuevo Domino
 
-nuevo dominio
-se agrega configuracion en el archivo conf (en este caso faces.conf )
-buscas o asignas la ip publica en pfsense
+Se agrega configuracion en el archivo conf (en este caso faces.conf )
+buscas o asignas la ip publica en pfsense, tienes que entrar a las reglas y agregar la nueva regla del servidor
+Una vez agregada la regla verificamos la Ip publica en la siguiente ruta dentro del firewall
+Para crear la ip publica es en el firewall / NAT / 1:1
+
+
+
+El ultimo paso es dar de alta el domino dentro de DNSMADEASY en este caso fue qa-aliat
+
 
 ******************************
+
+root@172.20.53.115
+MN4dm1n
+*************************
+
+dmz.facemasnegocio.com
+
+DMZ-LA
+
+199.231.161.8
+
+Aliat
+192.168.20.25
+
+
+********************
+
+Ver los logs de los crones
+
+tail -f /var/log/cron
+
+**********************
+
+Borrar el historial del servidor
+
+history -c
+
+************************

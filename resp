@@ -1,0 +1,44 @@
+#### SCRIPT RESPALDOS #####
+
+#!/bin/bash
+
+echo ""
+date
+echo "Preparando sistema de montaje"
+echo ""
+fecha=$(date '+%d-%m-%Y')
+logrespaldo="Respaldo$fecha.log"
+montaje=$(mount /mnt/Respaldos) mounted="$?"
+if [ $mounted -eq 0 -o $mounted -eq 32 ]
+then
+       echo "Se comienza el proceso de respaldo"
+else
+       cd /tmp
+       echo $montaje >> $logrespaldo
+       echo "No se pudo realizar el montaje, se cancela respaldo" >> $logrespaldo
+       exit
+fi
+
+#SE DECLARAN LAS VARIABLES NECESARIAS (INICIA EL PROCESO DE BACKUP)
+appbase="/app/www/html"
+apps=$(ls -l $appbase | awk '{print $9}')
+server=$(hostname)
+nas="/mnt/Respaldos/APP/PMN-COCONAL/$fecha"
+
+mkdir -p $nas
+cd $appbase
+#GENERANDO EL TGZ
+echo ""
+date
+echo "Generando backup de los Aplicativos..."
+for app in $apps
+do
+echo -e "Comprimiendo ${app}"
+tar -cJf $nas"/"$app.tar.xz $app &&
+echo "El respaldo del aplicativo $app se realizó correctamente" >> $logrespaldo
+done
+date
+echo "El backup de los aplicativos se han generado correctamente" >> $logrespaldo
+
+
+--------------------------------

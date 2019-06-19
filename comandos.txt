@@ -90,7 +90,7 @@ tar -xvf archivo.tar
 
 Si se quiere ver el contenido de un fichero .tar, se utiliza el siguiente comando:
 
-tar -tf archivo.tar
+tar -tf archivo.tara
 
     -t : Lista el contenido del fichero .tar
     -f : indica a tar que el siguiente argumento es el nombre del fichero a ver.
@@ -435,7 +435,7 @@ Tengo entendido que el comando anterior muestra los archivos que se han eliminad
 
 ******************************************************************************************************
 
-Cómo entrar a VMPORTALESNO02? 172.20.36.199
+Cómo entrar a VMPORTALESNO02? 172.20.36.199   --- ANPASA!
 ssh asist@172.20.36.199
 pass :wfn85EXb
 
@@ -653,6 +653,9 @@ hacer dump en segundo plano
 
 mysqldump -p -h 172.28.82.87 --opt --routines --max_allowed_packet=512M --single-transaction fcefranqdev > FCEfran.sql
 
+mysqldump -p --user usuario basededatos tabla > backuptabla.sql
+para respaldar una tabla
+
 --max_allowed_packet=512M
 Por si la tabla es demasiado pesada podemos controlar el peso de los paquetes que se transfieren
 
@@ -750,6 +753,7 @@ certificado SSL 	Un certificado SSL sirve para brindar seguridad al visitante de
 ******************************************
 
 Boveda mcdonals 172.21.36.154
+BD 192.168.20.73
 
 Boveda kio 192.168.20.42
 
@@ -830,6 +834,7 @@ base de datos    MNdb4r00t		MNDB4r00tenv
 asist 		wfn85EXb@456
 
 t3mp0r4l
+D@n0n32oi9
 
 > ** Expenses Danone
 > Servidor: 10.19.200.126
@@ -846,7 +851,16 @@ On Linux: /opt/Oracle/Middleware/opdq/server/tomcat/bin
 
 On Windows: c:\Oracle\Middleware\opdq\server\tomcat\bin
 
+cd /opt/apache-tomcat-7.0.47/bin/
+./shutdown.sh
+./startup.sh
 
+[root@PMN-NM-CORE2 bin]# ./startup.sh
+Using CATALINA_BASE:   /opt/apache-tomcat-7.0.47
+Using CATALINA_HOME:   /opt/apache-tomcat-7.0.47
+Using CATALINA_TMPDIR: /opt/apache-tomcat-7.0.47/temp
+Using JRE_HOME:        /
+Using CLASSPATH:       /opt/apache-tomcat-7.0.47/bin/bootstrap.jar:/opt/apache-tomcat-7.0.47/bin/tomcat-juli.jar
 
 Run the startup command:
 
@@ -1007,6 +1021,8 @@ Nomina QA
 BVDPRD:
 192.168.20.73
 
+pass: 5Dd1Akw3
+
 PACv5
 172.21.36.20
 
@@ -1100,6 +1116,12 @@ Ahí agregaremos al final el archivo que creamos previamente /bin/nombredelajaul
 después de eso
 
 usermod -s /bin/nombredelajaula nombreusuario
+
+Como en CentOS el comando deluser no está disponible no nos queda más remedio que emplear el comando:
+userdel vozidea
+
+Si queremos además de eliminar el usuario eliminar sus archivos, tendremos que emplear el comando:
+userdel -r vozidea
 
 ************************************************************
  ver la modificacion del archivo log por medio de un LOOP
@@ -1451,9 +1473,11 @@ buscas o asignas la ip publica en pfsense, tienes que entrar a las reglas y agre
 Una vez agregada la regla verificamos la Ip publica en la siguiente ruta dentro del firewall
 Para crear la ip publica es en el firewall / NAT / 1:1
 
+El ultimo paso es dar de alta el domino dentro de DNSMADEASY.
 
+Despues de configurar el archivo conf , hacen falta los redirects
+Que vienen siendo los .htaccsses, se configura el principal y el del aplicativo.
 
-El ultimo paso es dar de alta el domino dentro de DNSMADEASY en este caso fue qa-aliat
 
 
 ******************************
@@ -1485,3 +1509,74 @@ Borrar el historial del servidor
 history -c
 
 ************************
+#CRON AMEX EXPENSES BMW
+30 16 * * * /usr/local/zend/apache2/htdocs/eexpensesv3_bmw/shell_scripts/amex_shell.sh
+
+#CRON BMW PERMISOS AMEX/OUTBOX
+25 16 * * * /root/permisos.sh >> /root/permisos.log
+
+
+************************
+
+bmw.expensesmasnegocio.com  AMEX
+ Ip pública 200.77.234.120
+ IP 172.19.215.27
+
+
+*******************
+Virtalus
+
+LA1 192.168.20.2:9869
+La2 192.168.20.4
+LA3 192.168.20.6
+
+Tul DB 172.21.36.3
+TUL APP01 172.21.36.6
+TUL APP02 172.21.36.7
+TUL PMN-DEV 172.21.48.2
+************************************
+Coconal (172.21.36.37 -> app y 172.21.36.40 -> base de datos) , los cuales
+nos están indicando que se encuentra con lentitud
+
+***************
+consultar el listado de todos los Units ---- systemctl
+
+**********************************************
+
+Face timbre >>> 192.168.20.220
+BD >>> 192.168.20.132
+
+
+************************************
+
+IP Temporal
+
+ifconfig ens3:1 192.168.20.132 netmask 255.255.255.0 up
+
+nano /etc/sysconfig/network-scripts/
+
+ifdown ens3:1
+ifup ens3:1
+
+nano ifcfg-ens3:1
+
+*******************************
+install pstree CentOS
+
+yum install psmisc
+
+***************************
+facenomina
+
+172.19.215.120
+
+************************
+AVON
+
+Servidor de Aplicativo: 172.21.36.163
+Servidor de Base de Datos:172.21.36.39
+
+Usuario para logs : logs
+Contraseña : temporal01
+
+*****************************************

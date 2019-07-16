@@ -678,6 +678,13 @@ max_connections = 1000
 max_connect_errors = 10000
 innodb_lock_wait_timeout = 300
 
+
+Conocer tamaño de Base de Datos.
+
+SELECT table_schema "database", sum(data_length + index_length)/1024/1024 "size in MB" FROM information_schema.TABLES GROUP BY table_schema;
+
+(Dentro de Mysql)
+
 ************************************************************************************************************************
 Buscar Archivos:
 find / -name nombre_de_archivo
@@ -732,6 +739,12 @@ Loaded Configuration File => /etc/php/7.2/cli/php.ini
 **********************************
 
 AVON
+
+Server app ==>
+172.21.36.163
+
+Server db ==>
+172.21.36.39
 
 service httpd status
 service nginx status
@@ -843,6 +856,12 @@ D@n0n32oi9
 > ** Expenses Envasadoras
 > Servidor: 10.19.200.28
 > Ruta: /usr/local/zend/apache2/htdocs/envasadoras
+
+
+
+
+user: teadmin
+pass: D@n0n32oi9
 *******************************************************************************
 
 Tomcat Server
@@ -1072,6 +1091,8 @@ Password :wfn85EXb
 
 Versión del servidor
 
+hostnamectl
+
 cat  /etc/issue
 lsb_release -idc
 cat /etc/debian_version
@@ -1079,6 +1100,33 @@ rpm --query centos-release
 
 --version de Centos
 cat /etc/redhat-release
+
+
+Versión de ZEND Server
+
+cat /usr/local/zend/gui/application/data/zend-server.ini | grep version
+
+
+Version de MYSQL
+
+mysql --version
+
+Dentro de MariaDB
+
+SHOW VARIABLES LIKE "%version%";
+
+Version de PHP
+
+php -v
+
+Version de Tomcat
+
+/usr/share/tomcat7/bin$ ./version.sh
+
+find / -name "tomcat7"
+
+
+
 *********************************************************
 
 Enjaular usuario
@@ -1537,7 +1585,7 @@ TUL PMN-DEV 172.21.48.2
 ************************************
 Coconal (172.21.36.37 -> app y 172.21.36.40 -> base de datos) , los cuales
 nos están indicando que se encuentra con lentitud
-
+NEC
 ***************
 consultar el listado de todos los Units ---- systemctl
 
@@ -1580,3 +1628,44 @@ Usuario para logs : logs
 Contraseña : temporal01
 
 *****************************************
+
+Instalar la extensión SSH2 para PHP en Centos 7
+
+1- Instalamos cosas que son necesarias
+
+# yum install gcc php-devel php-pear libssh2 libssh2-devel make
+2- Instalamos ssh2
+
+# pecl install -f ssh2
+3- Corremos estos comandos
+
+# touch /etc/php.d/ssh2.ini
+# echo extension=ssh2.so > /etc/php.d/ssh2.ini
+4- Reiniciamos httpd
+
+# service httpd restart
+Verificamos, si todo salió bien, la respuesta debe ser ssh2
+
+# php -m | grep ssh2
+
+///// Habilitar la extensión en el php.ini en la parte de Dynamic Extensiones, agregar en la ultima linea.
+
+extension=ssh2.so
+
+*************+
+
+
+QA 172.21.48.24
+PROD 172.21.36.161
+
+************************
+
+servidor de qa de face 6.5 en el servidor 172.20.53.115 al nuevo servidor
+de qa QA 172.21.48.24
+
+
+*********************************
+IP publica
+
+curl ifconfig.me
+*************************

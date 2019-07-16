@@ -1,0 +1,41 @@
+Centos 7
+
+timedatectl
+Muestra los datos de hora y fecha de servidor.
+
+timedatectl list-timezones
+Lista de timezones
+
+timedatectl set-timezone "Europe/Madrid"
+Cambia el timezone por Madrid Europa
+
+hostnamectl
+Te da todas las especificaciones del hostname del servidor.
+
+hostnamectl set-hostname cambio_de_nombre
+Cambia el nombre del host
+
+-----Etiquetas del servidor que se pueden agregar---------
+hostnamectl set-location "Data center MN"
+cambio la localizacion del hostnamectl
+
+hostnamectl set-deployment "Desarrollo"
+Indica el deployment del servidor
+------------------------------------------------------------
+
+ip addr add 192.161.20.55/24 dev enp0s9
+Para añadir un nuevo dispositivo de red
+ para elimnar ocupamos la palabra del en lugar de add
+
+ ss -ultanp
+ Para saber temas de red en que puerto estan escuchando las aplicaciones.
+
+ NetworkMannager
+
+ nmcli con
+ Muestra las conexiones del servidor
+
+ nmcli con show --active
+ Conexiones activas
+
+ 

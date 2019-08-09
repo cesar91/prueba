@@ -47,4 +47,4 @@ control + q para salir del contenedor sin detenerlo
 para linkear contenedores.
 
 "docker logs -f nombre_contenedor"
-muestra los logs del contenedor 
+muestra los logs del contenedor

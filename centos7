@@ -38,4 +38,30 @@ Para añadir un nuevo dispositivo de red
  nmcli con show --active
  Conexiones activas
 
- 
+ ---------------------------------------------
+firewall-cmd --get-zones
+block dmz drop external home internal public trusted work
+
+Te muestra las zonas o grupos que maneja el firewalld
+
+firewall-cmd --new-zone=newzone --permanent
+Para agregar una nueva zona
+
+firewall-cmd --get-default-zone
+Muestra la zona por defecto que en todo caso seria PUBLIC
+
+ Configuración de firewalld
+
+ /etc/firewalld/firewalld.conf
+
+firewall-cmd --get-active-zones
+Muestra las zonas activas
+
+firewall-cmd --get-services
+Muestra los servicios conectados
+
+firewall-cmd --list-all
+Reglas de la zona activa
+
+firewall-cmd --list-all-zones
+Muestra las reglas de todas las zonas

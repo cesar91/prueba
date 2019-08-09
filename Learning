@@ -1,0 +1,162 @@
+Cosas que debes de aprender y estudiar.
+
+Openstack con Nube Privada
+Virtualización de Servidores VMware
+Configuración de la Red
+Programación Shell Script / Python - Deseable
+
+ Pearl y JavaScript
+ containerd
+
+
+ 12. Tareas de un Sysadmin
+
+
+12.1 Configuring hardware
+Cualquier configuración de hardware que es requerida para tener el sistema corriendo es deber del administrador de sistemas. Esto incluye determinar cual hardware cumple de mejor manera con los requerimientos/metas de la corporación; lo cual involucra considerar la capacidad actual, la esperada, el costo, la compatibilidad, disponibilidad de recursos, etc. La instalación y configuración de ese hardware también es parte de su trabajo.
+
+
+12.2 Installing the operating system
+En el mundo de Unix y Windows, las computadoras a menudo vienen con un sistema operativo preinstalado. Aunque en el mundo linux la mayoría de las compañías prefieren evitar costos y restricciones de este tipo de sistemas, de manera que piden a los administradores que instalen y configuren sus sistemas. Esto tiene sentido también, cuando se quieren hacer configuraciones "adhoc" y cuando se quiere tener un patrón de configuración entre todos los servdores de uno o varios sites..
+
+
+12.3 Installing application software
+Es deber del administrador de sistema instalar programas de aplicación y hacerlos disponibles a los usuarios apropiados, restringiendo el acceso a aquellos que no tienen la intención de utilizar dichos programas.
+
+
+12.4 Implementing system security
+Quizás la tarea más difícil del administrador de sistema es la seguridad. Esta es una área que suele ocasionar muchos problemas. Compañías que tienen acceso a internet tiene que considerar posibles ataques de aquellos que consideran divertido romper sistemas para hacerlos comportarse de manera diferente o hacerlos tronar. Hay que instalar filtros, sniffers, reforzar políticas de passwords, etc. todo para prevenir intrusiones.
+
+
+12.5 Configuring the kernel
+El corazón del sistema operativos es un componente llamado kernel. Este componente básicamente es una interface entre el hardware del sistema y el software de aplicación. Como administrador del sistema, se tiene que realizar cualquier configuración que sea requerida. Esto incluye cosas como restringir el tamaño y número de archivos que un usuario puede crear, activar o deshabilitar servicios, agregar soporte para hardware nuevo o filesystems.
+
+
+12.6 Creating users and groups
+Siempre que se desean agregar nuevos usuarios al sistema, cuentas deben crearse y configurarse para permitirles realizar su trabajo sin crear un riesgo de seguridad.
+
+
+12.7 Updating software
+Inevitablemente, una red y sus máquinas necesitan actualizaciones de software, ya sean del mismo sistema o bien de aplicaciones.
+
+
+12.8 Performance tuning
+Una de las tareas administrativas más notables por el usuario es qué tan bien ha realizado el administrador el "tuning" del sistema. Aunque una persona quizás pueda notar la eficiencia en términos del uso de memoria, los usuarios generalmente hacen este juicio basándose es que tanto tiempo se toma una tarea en realizar, como abrir una aplicación o cargar una página web.
+
+
+12.9 Disaster recovery
+La creación y preservación de copias del sistema en diferentes estados del desarrollo es una tarea importante. De esta manera se garantiza que el trabajo de todas las personas, incluyendo el administrador, no se perderá y podrá recuperarse.
+
+
+12.10 Capacity planning
+Como administrador del sistema, se necesita estar alerta con respecto a las limitaciones impuestas por el hardware y software involucrados en un sistema. Se necesita monitorear el tráfico de rec para determinar cuándo se necesita incrementar hardware/software, monitorear el espacio en disco para determinar cuándo es necesario crecer en almacenamiento, monitorear la memoria y los procesadores para verificar la carga y estimar cuándo se necesita aumentar la capacidad del hardware o bien agregar más servidores.
+
+
+12.12 Network y Database administration
+Aún cuando no es su rol, la mayoría de las compañías tienen una red interna (intranet) y una conexión a Internet, y en muchas ocasiones, el sysadmin es la persona que instala, mantiene o arregla estas redes. Así mismo si la empresa tiene bases de datos, lo ideal es que exista un DBA (Database administrator) pero si no existe, entonces el sysadmin es el encargado de dicha función.
+
+
+**************************************
+Troubleshooting ( Solución de problemas)
+
+Sysadmin 101: Solución de problemas
+Normalmente mantengo este blog estrictamente técnico, manteniendo las observaciones, opiniones y similares al mínimo. Pero esto, y las próximas publicaciones serán sobre conceptos básicos y fundamentos para comenzar en los roles de administración de sistemas / SRE / ingeniero de sistemas / sysops / devops-ops (como se quiera llamar a sí mismo) de manera más general.
+¡Tengan paciencia conmigo!
+
+"Mi sitio web es lento"
+
+Acabo de elegir el tipo de problema para este artículo al azar, esto se puede aplicar a casi cualquier solución de problemas relacionada con el administrador del sistema. No se trata de presumir de los mejores anuncios para encontrar la mayor cantidad de información. Tampoco es un "diagrama de flujo" exhaustivo, paso a paso, con la palabra "beneficio" en el último cuadro. Se trata de un enfoque general, por medio de algunos ejemplos.
+Los escenarios de ejemplo son únicamente para fines ilustrativos. A veces tienen una base en suposiciones que no se aplican a todos los casos todo el tiempo, y estoy seguro de que muchos lectores dirán "oh, pero creo que encontrarán ..." en algún momento.
+Pero eso sería perder el punto.
+
+Después de haber trabajado en soporte, o dentro de una organización de soporte durante más de una década, hay una cosa que me llama la atención una y otra vez y que me hizo escribir esto;
+La reacción instintiva que tienen muchos técnicos al enfrentar un problema es comenzar a arrojarle soluciones potenciales.
+
+"Mi sitio web es lento"
+
+Voy a intentar subir MaxClients/MaxRequestWorkers/worker_connections
+Voy a tratar de aumentar innodb_buffer_pool_size/effective_cache_size
+Voy a intentar habilitarlo mod_gzip(historia real, tristemente)
+"Vi este problema una vez, y luego fue porque X. Así que voy a tratar de arreglar X nuevamente, podría funcionar" .
+
+Esto desperdicia mucho tiempo y te lleva a una persecución salvaje. En la oscuridad. Usar guantes engrasados.
+El grupo de búferes de InnoDB puede estar al 100% de utilización, pero eso es solo porque hay restos de un gran informe único que alguien ejecutó un tiempo allí. Si no hay desalojos, acaba de perder el tiempo.
+
+Barra lateral rápida antes de comenzar
+En este punto, debo mencionar que si bien es igualmente aplicable a muchos roles, estoy escribiendo esto desde el punto de vista del administrador de un sistema de soporte general. En una organización madura, interna o cuando trabajas con clientes más grandes, totalmente administrados o "empresariales", normalmente tendrás todo instrumentado, medido, graficado, controlado (sin siquiera palabras) y alertado. Entonces su enfoque a menudo será bastante diferente. Vamos a ciegas aquí.
+
+Si no tienes ese tipo de cosas a tu disposición;
+
+Aclarar y primer vistazo
+Establezca cuál es el problema en realidad. "Lento" puede tomar muchas formas. ¿Es hora del primer byte? Esa es una clase de problema completamente diferente de la mala carga de Javascript y la extracción de 15 MB de activos estáticos en cada carga de página. ¿Es lento o simplemente más lento de lo normal? ¡Dos planes de ataque muy diferentes!
+
+Asegúrese de saber cuál es el problema reportado / experimentado en realidad antes de salir y hacer algo. Encontrar la fuente del problema a menudo es bastante difícil, sin tener que encontrar el problema en sí mismo.
+Ese es el equivalente del administrador de sistemas de llevar un cuchillo a un tiroteo.
+
+Frutos bajos / gimmies
+Se le permite buscar algunos sospechosos habituales cuando inicia sesión por primera vez en un servidor sospechoso. De hecho, deberías! Tiendo a disparar un puñado de comandos cada vez que inicio sesión en un servidor para verificar muy rápidamente algunas cosas; ¿Estamos intercambiando ( free/vmstat), los discos están ocupados ( top/iostat/iotop), estamos descartando paquetes ( netstat/proc/net/dev), hay una cantidad indebida de conexiones en un estado indebido ( netstat), es algo que está acaparando las CPU ( top), hay alguien más en este servidor ( w/who) , algún mensaje llamativo en syslog y dmesg?
+
+No tiene sentido continuar si tiene 2000 mensajes de su controlador RAID sobre lo infeliz que es con su caché de escritura.
+
+Esto no tiene que tomar más de medio minuto. Si nada llama su atención, continúe.
+
+Reproducir
+Si de hecho hay un problema en alguna parte, y no se puede encontrar fruta baja;
+
+Siga todos los pasos que pueda para intentar reproducir el problema. Cuando puedes reproducir, puedes observar. Cuando puedes observar, puedes resolver. Pregúntele a la persona que informa el problema qué pasos exactos tomar para reproducir el problema si aún no es obvio o no está cubierto en la primera sección.
+
+Ahora, para problemas causados ​​por erupciones solares y clientes que se ejecutan exclusivamente en OS / 2, no siempre es posible reproducirlo. ¡Pero su primer puerto de escala debería ser al menos intentarlo! Al principio, todo lo que sabes es "X piensa que su sitio web es lento". Por lo que sabes en ese momento, podrían estar conectados a su teléfono móvil GPRS y aplicar actualizaciones de Windows. Profundizar más de lo que ya tenemos en ese momento es, nuevamente, una pérdida de tiempo.
+
+¡Intenta reproducir!
+
+¡Comprueba el registro!
+Me entristece haber sentido la necesidad de incluir esto. Pero he visto escaladas que terminaron unos minutos después de que alguien ejecutó la tail /var/log/.. mayoría de las herramientas * NIX en estos días que son bastante buenas para iniciar sesión. Cualquier cosa descaradamente incorrecta se manifestará de manera bastante destacada en la mayoría de los registros de aplicaciones. Revisalo.
+
+Acortar
+Si no hay problemas obvios, pero puede reproducir el problema informado, genial. Entonces, sabes que el sitio web es lento. Ahora ha reducido las cosas a: representación / error del navegador, código de aplicación, infraestructura DNS, enrutador, firewall, NIC (los ocho + involucrados), cables de Ethernet, equilibrador de carga, base de datos, capa de almacenamiento en caché, almacenamiento de sesión, software de servidor web, aplicación servidor, RAM, CPU, tarjeta RAID, discos.
+Agregue un puñado de otros posibles culpables dependiendo de la configuración. También podría ser la SAN. ¡Y no te olvides del hardware WAF! Y ... entiendes mi punto.
+
+Si el problema es el tiempo hasta el primer byte, por supuesto, comenzará a aplicar soluciones conocidas al servidor web, ese es el que responde lentamente y de lo que más sabe, ¿verdad? ¡Incorrecto!
+Vuelve a intentar reproducir el problema. Solo que esta vez, intenta eliminar tantas fuentes potenciales de problemas como sea posible.
+
+Puede eliminar la gran mayoría de los posibles culpables muy fácilmente: ¿puede reproducir el problema localmente desde el servidor? Felicitaciones, acaba de ahorrarse tener que probar sus soluciones para el enrutamiento BGP.
+Si no puede, intente desde otra máquina en la misma red. Si puede, al menos puede mover el cortafuegos hacia abajo en su lista de sospechosos (¡pero mantenga un ojo sospechoso en ese interruptor!)
+
+¿Todas las conexiones son lentas? El hecho de que el servidor sea un servidor web no significa que no deba intentar reproducirse con otro tipo de servicio. ¡netcat es muy útil en estos escenarios (pero lo más probable es que su conexión SSH se haya retrasado todo este tiempo, como una pista)! Si eso también es lento, al menos sabe que es probable que tenga un problema de red y puede ignorar toda la pila web y todos sus componentes. Comience nuevamente desde arriba con este conocimiento (no recolecte $ 200). ¡Ábrete camino de adentro hacia afuera!
+
+Incluso si puede reproducirse localmente, todavía queda un montón de "cosas". Eliminemos algunas variables más. ¿Puedes reproducirlo con un archivo plano? Si i_am_a_1kb_file.htmles lento, sabe que no es su base de datos, capa de almacenamiento en caché ni nada más allá del sistema operativo y el servidor web en sí.
+¿Se puede reproducir con un hello_world.(py|php|js|rb..)archivo interpretado / ejecutado ? Si puede, ha reducido las cosas considerablemente y puede concentrarse en un puñado de cosas. Si hello_worldse sirve al instante, ¡todavía has aprendido mucho! Sabes que no hay restricciones de recursos evidentes, colas completas o llamadas IPC atascadas en ningún lado. Entonces, es algo que la aplicación está haciendo o algo con lo que se está comunicando.
+
+¿Todas las páginas son lentas? ¿O solo los que cargan el "feed de resultados en vivo" de un tercero?
+
+Lo que esto se reduce a es; ¿Cuál es la menor cantidad de "cosas" que puede involucrar y aún así reproducir el problema?
+
+Nuestro ejemplo es un sitio web lento, pero esto es igualmente aplicable a casi cualquier problema. ¿Entrega de correo? ¿Se puede entregar a nivel local? ¿A ti mismo? ¿A <proveedor común aquí>? Pruebe con mensajes pequeños de texto sin formato. Ábrete camino hasta la explosión de la campaña de 2MB. STARTTLS y no STARTTLS. Trabaja desde adentro hacia afuera.
+
+Cada uno de estos pasos lleva solo unos segundos, mucho más rápido que la implementación de la mayoría de las soluciones "potenciales".
+
+Observar / aislar
+A estas alturas, es posible que ya haya tropezado con el problema en virtud de no poder reproducirse cuando eliminó un componente en particular.
+
+Pero si no lo has hecho, o aún no sabes por qué ; Una vez que haya encontrado una manera de reproducir el problema con la menor cantidad de "cosas" (término técnico) entre usted y el problema, es hora de comenzar a aislar y observar.
+
+Tenga en cuenta que muchos servicios pueden ejecutarse en primer plano y / o habilitar la depuración. Para ciertas clases de problemas, a menudo es de gran ayuda hacer esto.
+
+Aquí también es donde entra en juego tu armería tradicional. strace, lsof, netstat, GDB, iotop, valgrind, Perfiladores de idioma (cprofile, Xdebug, rubí-prof ...). Ese tipo de herramientas.
+
+Sin embargo, una vez que haya llegado hasta aquí, rara vez tendrá que romper perfiladores o depuradores.
+
+straceA menudo es un muy buen lugar para comenzar.
+Puede notar que la aplicación está atascada en una read()llamada en particular en un descriptor de archivo de socket conectado al puerto 3306 en alguna parte. Sabrás qué hacer.
+Pase a MySQL y comience desde arriba de nuevo. Fruta baja: "Waiting_for * lock", puntos muertos, conexiones_máx. Pasar a: ¿Todas las consultas? Solo escribe? ¿Solo ciertas mesas? ¿Solo ciertos motores de almacenamiento? ...
+
+Puede notar que hay un connect()recurso de API externo que tarda cinco segundos en completarse, o incluso agota el tiempo de espera. Sabrás qué hacer.
+
+Usted puede notar que hay 1.000 llamadas a fstat()y open()en el mismo par de archivos como parte de una dependencia circular en alguna parte. Sabrás qué hacer.
+
+Puede que no sea ninguna de esas cosas en particular, pero te lo prometo, notarás algo.
+
+Si solo va a tomar una cosa de esta sección, déjela ser; aprende a usar strace! Realmente aprende, lee la página de manual completa . Ni siquiera se salte la sección HISTORIA. mancada syscall aún no sabes lo que hace. El 98% de las sesiones de solución de problemas termina con strace.
+
+
+**************************************

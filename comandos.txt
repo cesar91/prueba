@@ -485,7 +485,7 @@ mysql -p -h 172.19.215.29
 
 CREATE USER 'root'@'%' IDENTIFIED BY 'DBmnr00t.17%';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGIES
+FLUSH PRIVILEGES;
 
 **********************************************************************************************************************
 
@@ -559,6 +559,11 @@ SCP Secure copy scp permite que los archivos se copien a, desde
 o entre diferentes hosts. Utiliza ssh para la transferencia de
 datos y proporciona la misma autenticación y el mismo nivel de
 seguridad que ssh
+
+
+Instalarar ssh service
+
+sudo apt install openssh-server
 
 **************************************************************************************************************
 
@@ -1060,6 +1065,11 @@ BDPRD
 TELETON
 192.168.20.165
 
+EXPBMW
+172.20.53.26
+pass: DBmnr00t.15%
+
+
 Para todas el usuario es root
 Busquen el password en el archivo PMN INVENTARIO
 
@@ -1126,7 +1136,10 @@ Version de Tomcat
 find / -name "tomcat7"
 
 
+Version de Apache
 
+apachectl -v
+httpd -v
 *********************************************************
 
 Enjaular usuario
@@ -1655,7 +1668,7 @@ extension=ssh2.so
 *************+
 
 
-QA 172.21.48.24
+QA-CFDI33  172.21.48.24
 PROD 172.21.36.161
 
 ************************
@@ -1669,3 +1682,127 @@ IP publica
 
 curl ifconfig.me
 *************************
+
+Direcciones PAC nuevas.
+
+Nodo 1		172.21.36.15 BD1
+Nodo 2		172.21.36.16 BD2
+Nodo 3		172.21.36.17 BD3   Puerto 3306
+
+HA PROXY (2)
+
+172.21.36.21
+172.21.36.22   Tienen keepalived
+
+Principal  172.21.36.23
+
+puertos 13304 lecturas
+13305 escrituras
+
+Contraseña de la BD  DBmnr00t.2019%
+
+Para entrar al server es con mi usuario jcastillo y contraseña SY5MXkxe
+
+********************************************************
+
+Purgar archivos binarios de manera dinamica en MariaDB
+MariaDB [(none)]> show binary logs;
++-------------------+------------+
+| Log_name          | File_size  |
++-------------------+------------+
+| master-bin.000017 | 1073747541 |
+| master-bin.000018 | 1073743355 |
+| master-bin.000019 |   93088725 |
+| master-bin.000020 |        366 |
+| master-bin.000021 | 1073744598 |
+| master-bin.000022 | 1074689402 |
+| master-bin.000023 | 1073744776 |
+| master-bin.000024 | 1073754749 |
+| master-bin.000025 | 1073774579 |
+| master-bin.000026 | 1073750317 |
+| master-bin.000027 | 1073777725 |
+| master-bin.000028 | 1074766989 |
+| master-bin.000029 | 1073745299 |
+| master-bin.000030 | 1073750519 |
+| master-bin.000031 | 1073742599 |
+| master-bin.000032 | 1075076066 |
+| master-bin.000033 | 1073751809 |
+| master-bin.000034 | 1073755808 |
+| master-bin.000035 | 1073742737 |
+| master-bin.000036 | 1073742063 |
+| master-bin.000037 | 1073743281 |
+| master-bin.000038 |  693950317 |
++-------------------+------------+
+
+MariaDB [(none)]> PURGE BINARY LOGS BEFORE '2019-07-17';
+
+MariaDB [(none)]> show variables like '%expire%';
++----------------------------+-------+
+| Variable_name              | Value |
++----------------------------+-------+
+| expire_logs_days           | 4     |
+| innodb_log_arch_expire_sec | 0     |
++----------------------------+-------+
+2 rows in set (0.00 sec)
+
+MariaDB [(none)]> set global expire_logs_days=4;
+
+****************************************************
+
+Comando para darle permisos de administrador a usuarios, sin necesidad de editar el SUDOERS con Visudo
+usermod -aG wheel rdiaz
+
+
+
+*************************************************
+FACE 5 KIO
+172.19.215.204
+kio/face5/f4/configuracion/fwk_db.php
+FCEKIOPR1
+
+
+face65
+172.21.36.161
+beans-mni-components.xml
+/var/www/html/Face65/src/MasNegocio/Face/beans-mni-components.xml
+FCEMNPR02v65-Actual
+FCEMNPR01v6-Historico
+
+
+belcorp
+172.19.215.131
+/usr/local/zend/apache2/htdocs/eexpensesv2belcorp/lib/php/constantes.php
+EXPBCPPR1v2
+
+
+
+Smartfit
+IP Aplicativo: 172.20.53.147
+Base de Datos: FCESMRTFITPR
+Rutas: portal\com\configuracion\Constantes.php
+
+Boveda Martí
+IP Aplicativo: 172.19.215.27
+Base de Datos: BVDMRTPR1
+Rutas: com\beans-datasource.xml
+
+********************************************
+
+Creación de usuario en MYSQL o MariaDB
+
+GRANT ALL ON <base>.* TO 'usr_kio'@'%' IDENTIFIED BY 'pass';
+
+GRANT ALL ON FCEKIOPR1.* TO 'usr_kio'@'%' IDENTIFIED BY 'MN4dm1n';
+********************************************************
+
+Matar sesion de usuario
+
+root@a22-pro:~# who
+ponente  tty8         2015-02-12 13:27 (:0)
+root     pts/0        2015-02-12 13:25 (recursos.valledeljerte3)
+
+root@a22-pro:~# pkill -9 -t tty8
+
+
+
+***************************************************

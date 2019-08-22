@@ -1634,6 +1634,15 @@ facenomina
 ************************
 AVON
 
+Servidores nuevos de bases de Datos
+172.21.36.18
+172.21.36.14   <<<<< para ejecutar querys
+172.21.36.11  <<<<< MASTER y backups
+
+Hostname >>> PMN_dbprodmin01
+PasswordDB >>>>> DBmnr00t.2019%
+PasswordServer >>>> MN4dm1n2018!
+
 Servidor de Aplicativo: 172.21.36.163
 Servidor de Base de Datos:172.21.36.39
 
@@ -1806,3 +1815,73 @@ root@a22-pro:~# pkill -9 -t tty8
 
 
 ***************************************************
+
+Conocer quien creo un archivo
+
+stat -c %U nombredelarchivo
+stat Nombredelarchivo
+
+
+*****************************************************
+Hace unos meses, configuré la pila LAMP en el servidor Ubuntu 18.04. Hoy traté de iniciar sesión como usuario root en mi servidor de base de datos, pero olvidé por completo la contraseña. Después de un par de búsquedas en Google y de revisar algunas publicaciones de blog, restablecí la contraseña correctamente. Para aquellos que se preguntan cómo hacer esto, este breve tutorial explica cómo podemos restablecer la contraseña root de MySQL o MariaDB en sistemas operativos de tipo Unix.
+
+Restablecer la contraseña raíz de MySQL o MariaDB
+
+Primero, detén el servidor de la base de datos. Si usas MySQL, escribe el siguiente comando y presiona la tecla ENTER.
+
+$ sudo systemctl stop mysql
+Para MariaDB:
+
+$ sudo systemctl stop mariadb
+A continuación, reinicia el servidor de la base de datos sin la verificación de permisos con el siguiente comando:
+
+$ sudo mysqld_safe --skip-grant-tables &
+Aquí, –skip-grant-tables te permite conectarte sin una contraseña y con todos los privilegios. Si inicias tu servidor con esta opción, también habilita –skip-networking que se usa para evitar que los otros clientes se conecten al servidor de la base de datos. Y, el símbolo (&) se utiliza para ejecutar el comando en segundo plano, por lo que podrías escribir los otros comandos en los siguientes pasos. Ten en cuenta que el comando anterior es peligroso y tu servidor de base de datos se vuelve inseguro. Debes ejecutar este comando solo durante un breve período para restablecer la contraseña.
+
+A continuación, inicia sesión en tu servidor MySQL/MariaDB como usuario root:
+
+$ mysql
+En el indicador mysql> o MariaDB >, ejecuta el siguiente comando para restablecer la contraseña del usuario root:
+
+UPDATE mysql.user SET Password=PASSWORD('aquí la nueva contraseña') WHERE User='root';
+Luego, escribe los siguientes comandos para salir de la consola de mysql.
+
+FLUSH PRIVILEGES;
+exit
+Finalmente, cierra el servidor de base de datos en ejecución que iniciaste anteriormente con –skip-grant-tables. Para hacerlo, ejecuta:
+
+$ sudo mysqladmin -u root -p shutdown
+Se te pedirá que ingreses la contraseña de usuario root de mysql/mariadb que configuraste en el paso anterior.
+
+Ahora, inicia el servicio de mysql/mariadb normalmente usando el comando:
+
+$ sudo systemctl start mysql
+Para MariaDB:
+
+$ sudo systemctl start mariadb
+Verifica si la contraseña realmente se ha cambiado con el siguiente comando:
+
+$ mysql -u root -p
+
+**********************************+
+
+Cambiar el timeout de BD
+
+nano /etc/my.cnf.d/server.cnf
+
+Se agrega esta linea después de las líneas de InnoDB
+
+#Incremento de variable	que da 25min max de bloqueo por tabla (150 x 10	autocommit)
+innodb_lock_wait_timeout=150
+
+Y de manera dinámica dentro de la BD es con los siguientes comandos
+
+show variables like '%innodb%';
+
+set global innodb_lock_wait_timeout=150;
+
+show variables like '%innodb_lock_wait_timeout%';
+
+set innodb_lock_wait_timeout=150;
+
+*********************************************
